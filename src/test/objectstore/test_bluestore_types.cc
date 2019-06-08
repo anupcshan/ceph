@@ -1242,7 +1242,7 @@ TEST(GarbageCollector, BasicTest)
     ASSERT_EQ(saving, 1);
     auto& to_collect = gc.get_extents_to_collect();
     ASSERT_EQ(to_collect.num_intervals(), 1u);
-    ASSERT_EQ(*to_collect.begin(), std::make_pair(100ul, 10ul));
+    ASSERT_EQ(*to_collect.begin(), std::make_pair(100ull, 10ull));
 
     em.clear();
     old_extents.clear();
@@ -1312,10 +1312,10 @@ TEST(GarbageCollector, BasicTest)
     ASSERT_EQ(saving, 2);
     auto& to_collect = gc.get_extents_to_collect();
     ASSERT_EQ(to_collect.num_intervals(), 2u);
-    ASSERT_TRUE((*to_collect.begin()) == std::make_pair(0x0ul ,0x8000ul) ||
-		  *(++to_collect.begin()) == std::make_pair(0x0ul, 0x8000ul));
-    ASSERT_TRUE((*to_collect.begin()) == std::make_pair(0x3f000ul, 0x1000ul) ||
-		  *(++to_collect.begin()) == std::make_pair(0x3f000ul, 0x1000ul));
+    ASSERT_TRUE((*to_collect.begin()) == std::make_pair(0x0ull ,0x8000ull) ||
+		  *(++to_collect.begin()) == std::make_pair(0x0ull, 0x8000ull));
+    ASSERT_TRUE((*to_collect.begin()) == std::make_pair(0x3f000ull, 0x1000ull) ||
+		  *(++to_collect.begin()) == std::make_pair(0x3f000ull, 0x1000ull));
 
     em.clear();
     old_extents.clear();
@@ -1433,10 +1433,10 @@ TEST(GarbageCollector, BasicTest)
     ASSERT_EQ(saving, 2);
     auto& to_collect = gc.get_extents_to_collect();
     ASSERT_EQ(to_collect.num_intervals(), 2u);
-    ASSERT_TRUE(*to_collect.begin() == std::make_pair(0x0ul, 0x8000ul) ||
-		  *(++to_collect.begin()) == std::make_pair(0x0ul, 0x8000ul));
-    ASSERT_TRUE(*to_collect.begin() == std::make_pair(0x3f000ul, 0x1000ul) ||
-		  *(++to_collect.begin()) == std::make_pair(0x3f000ul, 0x1000ul));
+    ASSERT_TRUE(*to_collect.begin() == std::make_pair(0x0ull, 0x8000ull) ||
+		  *(++to_collect.begin()) == std::make_pair(0x0ull, 0x8000ull));
+    ASSERT_TRUE(*to_collect.begin() == std::make_pair(0x3f000ull, 0x1000ull) ||
+		  *(++to_collect.begin()) == std::make_pair(0x3f000ull, 0x1000ull));
 
     em.clear();
     old_extents.clear();

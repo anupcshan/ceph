@@ -1354,7 +1354,7 @@ void BlueFS::_drop_link(FileRef file)
 int BlueFS::_read_random(
   FileReader *h,         ///< [in] read from here
   uint64_t off,          ///< [in] offset
-  size_t len,            ///< [in] this many bytes
+  uint64_t len,          ///< [in] this many bytes
   char *out)             ///< [out] optional: or copy it here
 {
   auto* buf = &h->buf;

@@ -186,8 +186,7 @@ if(${WITH_RADOSGW})
     ${test_cors_srcs}
     )
   target_link_libraries(test_cors
-    librados
-    ${rgw_libs}
+    rgw
     global
     ${BLKID_LIBRARIES}
     ${CURL_LIBRARIES}
