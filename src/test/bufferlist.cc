@@ -837,7 +837,7 @@ TEST(BufferListIterator, iterate_with_empties) {
   EXPECT_EQ(bl.length(), 0u);
   EXPECT_EQ(bl.get_num_buffers(), 1u);
 
-  encode(42l, bl);
+  encode(42ll, bl);
   EXPECT_EQ(bl.get_num_buffers(), 2u);
 
   bl.push_back(ceph::buffer::create(0));
@@ -853,21 +853,21 @@ TEST(BufferListIterator, iterate_with_empties) {
     bl.append(bl_with_empty_ptr);
   }
 
-  encode(24l, bl);
+  encode(24ll, bl);
   EXPECT_EQ(bl.get_num_buffers(), 5u);
 
   auto i = bl.cbegin();
-  long val;
+  uint64_t val;
   decode(val, i);
-  EXPECT_EQ(val, 42l);
+  EXPECT_EQ(val, 42ll);
 
   decode(val, i);
-  EXPECT_EQ(val, 24l);
+  EXPECT_EQ(val, 24ll);
 
   val = 0;
   i.seek(sizeof(long));
   decode(val, i);
-  EXPECT_EQ(val, 24l);
+  EXPECT_EQ(val, 24ll);
   EXPECT_TRUE(i == bl.end());
 
   i.seek(0);
@@ -2665,7 +2665,7 @@ TEST(BufferList, InternalCarriage) {
   ceph::bufferlist bl;
   EXPECT_EQ(bl.get_num_buffers(), 0u);
 
-  encode(42l, bl);
+  encode(42ll, bl);
   EXPECT_EQ(bl.get_num_buffers(), 1u);
 
   {
@@ -2678,7 +2678,7 @@ TEST(BufferList, InternalCarriage) {
     EXPECT_EQ(bl.get_num_buffers(), 2u);
   }
 
-  encode(24l, bl);
+  encode(24ll, bl);
   EXPECT_EQ(bl.get_num_buffers(), 3u);
 }
 
@@ -2690,7 +2690,7 @@ TEST(BufferList, ContiguousAppender) {
   {
     auto ap = bl.get_contiguous_appender(100);
 
-    denc(42l, ap);
+    denc(42ll, ap);
     EXPECT_EQ(bl.get_num_buffers(), 1u);
 
     // append bufferlist with single ptr inside. This should
@@ -2707,7 +2707,7 @@ TEST(BufferList, ContiguousAppender) {
       EXPECT_EQ(bl.get_num_buffers(), 3u);
     }
 
-    denc(24l, ap);
+    denc(24ll, ap);
     EXPECT_EQ(bl.get_num_buffers(), 3u);
     EXPECT_EQ(bl.length(), sizeof(long) + 3u);
   }
